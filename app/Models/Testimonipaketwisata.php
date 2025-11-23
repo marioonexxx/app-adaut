@@ -16,4 +16,9 @@ class Testimonipaketwisata extends Model
         'rating',
         'foto',
     ];
+
+    public function paket()
+    {
+        return $this->belongsTo(PaketWisata::class, 'paket_id');
+    }
 }

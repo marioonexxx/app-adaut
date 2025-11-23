@@ -18,6 +18,12 @@ class HomePageController extends Controller
         return view('homepage.index', compact('pakets', 'testimonis'));
     }
 
+    public function listPaket()
+    {
+        $pakets = Paketwisata::latest()->take(8)->get(); // atau semua
+        return view('homepage.listpaketwisata', compact('pakets'));
+    }
+
     public function tentangAdaut()
     {
         return view('homepage.tentang');

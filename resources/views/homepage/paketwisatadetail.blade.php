@@ -86,44 +86,45 @@
                 @endif
 
 
+
                 <!-- Booking Section -->
                 <div class="booking-section mt-5" id="booking">
                     <div class="booking-form-card">
-                        <h3>Secure Your Place</h3>
-                        <form action="#" method="post" class="php-email-form">
+                        <h3>Formulir Pemesanan</h3>
+
+                        <form id="waBookingForm" method="POST" onsubmit="sendToWA(event)">
                             @csrf
                             <div class="form-group">
-                                <label for="contact-name">Your Name</label>
+                                <label for="contact-name">Nama Anda</label>
                                 <input type="text" name="name" id="contact-name" class="form-control" required>
                             </div>
 
                             <div class="form-group">
-                                <label for="contact-email">Email Address</label>
+                                <label for="contact-email">Alamat Email</label>
                                 <input type="email" name="email" id="contact-email" class="form-control" required>
                             </div>
 
                             <div class="form-group">
-                                <label for="contact-phone">Phone Number</label>
+                                <label for="contact-phone">Nomor Telepon</label>
                                 <input type="tel" name="phone" id="contact-phone" class="form-control">
                             </div>
 
                             <div class="form-group">
-                                <label for="travelers-count">Number of Travelers</label>
+                                <label for="travelers-count">Jumlah Peserta</label>
                                 <select name="travelers" id="travelers-count" class="form-control" required>
                                     @for ($i = 1; $i <= 10; $i++)
-                                        <option value="{{ $i }}">{{ $i }}
-                                            Person{{ $i > 1 ? 's' : '' }}</option>
+                                        <option value="{{ $i }}">{{ $i }} Orang</option>
                                     @endfor
                                 </select>
                             </div>
 
                             <div class="form-group">
-                                <label for="special-notes">Special Requests</label>
+                                <label for="special-notes">Catatan Khusus</label>
                                 <textarea name="message" id="special-notes" rows="3" class="form-control"
-                                    placeholder="Dietary requirements, celebrations, accessibility needs..."></textarea>
+                                    placeholder="Alergi makanan, kebutuhan khusus, perayaan, dll..."></textarea>
                             </div>
 
-                            <button type="submit" class="btn-submit">Submit Booking Request</button>
+                            <button type="submit" class="btn-submit">Kirim Permintaan Pemesanan</button>
                         </form>
                     </div>
                 </div>
@@ -152,6 +153,34 @@
 
 
     @include('layouts.homepage.footer2')
+
+
+    <script>
+        function sendToWA(event) {
+            event.preventDefault(); // Stop form submit
+
+            let name = document.getElementById('contact-name').value;
+            let email = document.getElementById('contact-email').value;
+            let phone = document.getElementById('contact-phone').value;
+            let travelers = document.getElementById('travelers-count').value;
+            let message = document.getElementById('special-notes').value;
+
+            let text =
+                `📩 *Permintaan Pemesanan*
+-------------------------
+👤 Nama: ${name}
+📧 Email: ${email}
+📱 Telepon: ${phone}
+👥 Jumlah Peserta: ${travelers} Orang
+📝 Catatan Khusus: ${message}
+-------------------------
+Mohon konfirmasi ketersediaan paket.`;
+
+            let url = "https://wa.me/6282198653180?text=" + encodeURIComponent(text);
+
+            window.open(url, "_blank");
+        }
+    </script>
 
 </body>
 

@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\PaketWisataController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TestimonialController;
 use App\Http\Middleware\Administrator;
 use Illuminate\Support\Facades\Route;
 
@@ -17,7 +18,7 @@ Route::get('/testimonial', [HomeController::class, 'testimonial'])->name('show.t
 Route::post('/testimonial', [HomeController::class, 'testimonial_submit'])->name('store.testimonial');
 
 Route::get('/dashboard', function () {
-    return view('dashboard');    
+    return view('dashboard');
 });
 
 // Route::get('/detailpaket', function () {
@@ -33,7 +34,7 @@ Route::get('/detail-paketwisata/{id}', [HomePageController::class, 'detailPaketw
 Route::get('/testimonial-client',[HomePageController::class, 'insertTestimonial'])->name('homepage.insert.testimonial');
 Route::post('/testimonial-client',[HomePageController::class, 'storeTestimonial'])->name('homepage.store.testimonial');
 Route::get('/tentang', [HomePageController::class, 'tentangAdaut'])->name('homepage.tentang.adaut');
-
+Route::get('/list-paketwisata',[HomePageController::class, 'listPaket'])->name('homepage.listpaket');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -49,9 +50,11 @@ Route::middleware('auth','verified','Administrator')->group(function(){
     Route::put('administrator/updatepaketwisata/{id}',[AdministratorController::class, 'update_paketwisata'])->name('administrator.updatepaketwisata');
     Route::delete('administrator/deletepaketwisata/{id}',[AdministratorController::class, 'destroy_paketwisata'])->name('administrator.deletepaketwisata');
     Route::get('administrator/kontak',[AdministratorController::class,'show_kontak'])->name('administrator.showkontak');
-    
+
     Route::resource('paket-wisata', PaketWisataController::class);
 
+    Route::get('administrator/testimonial',[TestimonialController::class, 'index'])->name('adminstrator.testimonial.index');
+    Route::delete('administrator/testimonial/{id}', [TestimonialController::class, 'destroy'])->name('adminstrator.testimonial.destroy');
 });
 
 require __DIR__.'/auth.php';

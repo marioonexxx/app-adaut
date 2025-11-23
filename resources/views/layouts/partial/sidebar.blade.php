@@ -11,30 +11,25 @@
                     Dashboard
                 </a>
                 <a class="nav-link" href="{{ route('administrator.showpaketwisata') }}">
-                    <div class="nav-link-icon"><i data-feather="home"></i></div>
+                    <div class="nav-link-icon"><i data-feather="edit"></i></div>
                     Paket Wisata Old
                 </a>
                  <a class="nav-link" href="{{ route('paket-wisata.index') }}">
-                    <div class="nav-link-icon"><i data-feather="home"></i></div>
+                    <div class="nav-link-icon"><i data-feather="edit"></i></div>
                     Paket Wisata
                 </a>
-
-                <a class="nav-link" href="{{ route('administrator.showkontak') }}">
-                    <div class="nav-link-icon"><i data-feather="home"></i></div>
-                    Kontak
-                </a>
-                <a class="nav-link" href="{{ route('administrator.dashboard') }}">
-                    <div class="nav-link-icon"><i data-feather="home"></i></div>
+                <a class="nav-link" href="{{ route('adminstrator.testimonial.index') }}">
+                    <div class="nav-link-icon"><i data-feather="edit"></i></div>
                     Testimoni
                 </a>
-                
-                
-                
-                
+
+
+
+
                 @endif
-                
-                
-                
+
+
+
             </div>
         </div>
         <!-- Sidenav Footer-->

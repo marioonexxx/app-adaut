@@ -11,9 +11,7 @@
                 <ul>
                     <li><a href="{{ route('homepage') }}" class="active">Home</a></li>
                     <li><a href="{{ route('homepage.tentang.adaut') }}">Tentang</a></li>
-                    <li><a href="#">Paket Wisata</a></li>
-                    <li><a href="#">Event</a></li>
-                    <li><a href="#">Gallery</a></li>
+                    <li><a href="{{ route('homepage.listpaket') }}">Paket Wisata</a></li>
                     <li><a href="blog.html">Blog</a></li>
 
                     {{-- <li><a href="contact.html">Contact</a></li> --}}
